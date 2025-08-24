@@ -13,3 +13,25 @@ cherry-blossom: '&g[#f2c6de,#f874ff,#f6c0ff,#ff68e8]'
 rose: '&g[#ff1b1b,#ff1b1b,#ff7c7c]'
 vibrant-rainbow-gradient: '&g[#ff0000,#ffa500,#ffff00,#008000,#0000ff,#4b0082,#ee82ee]'
 pastel-rainbow-gradient: '&g[#ffadad,#ffd6a5,#fdffb6,#caffbf,#9bf6ff,#a0c4ff,#bdb2ff,#ffc6ff]'
+
+
+# Alternate format: MINIMESSAGE (only if your plugin supports it) - Uncomment the lines below and comment out the lines above
+# Note: Created to support zelchat plugin which uses MiniMessage format for gradients
+
+#blue: "<#5da7ee>"
+#light-blue: "<#3574ff>"
+#dark-blue: "<#1b3cff>"
+
+#blue-rainbow: "<gradient:#5da7ee:#3574ff:#1b3cff:#3574ff>"
+#bright-rainbow: "<gradient:#aaaaaa:#bbbbbb:#cccccc:#dddddd:#eeeeee>"
+#pastel-rainbow: "<gradient:#ffadad:#ffd6a5:#fdffb6:#caffbf:#9bf6ff:#a0c4ff:#bdb2ff:#ffc6ff>"
+
+#sunset: "<gradient:#ffbc68:#ff9364:#ff6878:#ef67b3:#d046f5>"
+#ice: "<gradient:#76cdff:#005ed9:#76cdff>"
+#hot: "<gradient:#f59141:#ff4b29:#f5b72f>"
+#earth: "<gradient:#00d728:#795d31:#644a22>"
+#magic: "<gradient:#763bbc:#2e7dc4:#d758d4>"
+#cherry-blossom: "<gradient:#f2c6de:#f874ff:#f6c0ff:#ff68e8>"
+#rose: "<gradient:#ff1b1b:#ff1b1b:#ff7c7c>"
+#vibrant-rainbow-gradient: "<gradient:#ff0000:#ffa500:#ffff00:#008000:#0000ff:#4b0082:#ee82ee>"
+#pastel-rainbow-gradient: "<gradient:#ffadad:#ffd6a5:#fdffb6:#caffbf:#9bf6ff:#a0c4ff:#bdb2ff:#ffc6ff>"

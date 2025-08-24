@@ -1,5 +1,8 @@
 package com.sulphate.chatcolor2.utils;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -46,13 +49,17 @@ public class InventoryUtils {
     public static void setDisplayName(ItemStack item, String displayName) {
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(GeneralUtils.colourise(displayName));
+        // Force non-italic by prefixing reset
+        meta.setDisplayName(GeneralUtils.colourise("§r" + displayName));
         item.setItemMeta(meta);
     }
 
     public static void setLore(ItemStack item, List<String> lore) {
-        List<String> colouredLore = lore.stream().map(GeneralUtils::colourise).collect(Collectors.toList());
         ItemMeta meta = item.getItemMeta();
+
+        List<String> colouredLore = lore.stream()
+                .map(line -> GeneralUtils.colourise("§r" + line)) // reset italics each line
+                .collect(Collectors.toList());
 
         meta.setLore(colouredLore);
         item.setItemMeta(meta);
