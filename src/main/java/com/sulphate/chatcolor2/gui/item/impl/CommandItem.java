@@ -7,22 +7,26 @@ import com.sulphate.chatcolor2.utils.InventoryUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.entity.Player;
+
 
 import java.util.List;
 
 public class CommandItem extends ComplexGuiItem implements ClickableItem {
 
     public static String clickToRunMessage;
+    private final Player owner;
 
-    public CommandItem(String data, ItemStackTemplate itemTemplate) {
+    public CommandItem(String data, ItemStackTemplate itemTemplate, Player owner) {
         super(data, itemTemplate);
+        this.owner = owner; // Initialize the owner
+
     }
 
     @Override
     public ItemStack buildItem() {
         ItemStack item = itemTemplate.build(1);
 
-        // Allow people to remove it if they want to - this is a simple way to do so.
         if (!clickToRunMessage.isEmpty()) {
             List<String> lore = InventoryUtils.getLore(item);
 
@@ -37,8 +41,12 @@ public class CommandItem extends ComplexGuiItem implements ClickableItem {
 
     @Override
     public void click() {
-        ConsoleCommandSender console = Bukkit.getConsoleSender();
-        Bukkit.dispatchCommand(console, data);
+        if (data.startsWith("[player]")) {
+            String playerCommand = data.substring("[player]".length()).trim();
+            owner.performCommand(playerCommand); // Execute the command as the player
+        } else {
+            ConsoleCommandSender console = Bukkit.getConsoleSender();
+            Bukkit.dispatchCommand(console, data); // Execute the command as the console
+        }
     }
-
 }
