@@ -146,7 +146,7 @@ public class Gui {
                 }
             }
 
-            if (inventoryType.equals(InventoryType.DYNAMIC) && !(item instanceof InventoryItem || item instanceof SimpleGuiItem)) {
+            if (inventoryType.equals(InventoryType.DYNAMIC) && !(item instanceof InventoryItem || item instanceof SimpleGuiItem || item instanceof CommandItem)) {
                 dynamicItems.add(item);
             }
             else {
@@ -292,7 +292,7 @@ public class Gui {
                 ItemStackTemplate template = ItemStackTemplate.fromConfigSection(itemSection);
 
                 data = data.replace("%player%", owner.getDisplayName());
-                item = new CommandItem(data, template);
+                item = new CommandItem(data, template, owner); // Pass the owner to the CommandItem
             }
             else {
                 String name = itemSection.contains("name") ?
