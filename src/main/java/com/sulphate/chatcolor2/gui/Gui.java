@@ -146,7 +146,7 @@ public class Gui {
                 }
             }
 
-            if (inventoryType.equals(InventoryType.DYNAMIC) && !(item instanceof InventoryItem || item instanceof SimpleGuiItem)) {
+            if (inventoryType.equals(InventoryType.DYNAMIC) && !(item instanceof InventoryItem || item instanceof SimpleGuiItem || item instanceof CommandItem)) {
                 dynamicItems.add(item);
             }
             else {
