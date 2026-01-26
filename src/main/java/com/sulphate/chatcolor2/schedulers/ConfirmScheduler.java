@@ -4,7 +4,6 @@ import com.sulphate.chatcolor2.commands.Setting;
 import com.sulphate.chatcolor2.managers.ConfigsManager;
 import com.sulphate.chatcolor2.managers.ConfirmationsManager;
 import com.sulphate.chatcolor2.utils.Config;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -18,7 +17,7 @@ public class ConfirmScheduler {
     private final YamlConfiguration mainConfig;
 
     private final Player player;
-    private int id;
+    private SchedulerAdapter.TaskWrapper task;
     private final Setting setting;
     private final Object value;
 
@@ -35,14 +34,15 @@ public class ConfirmScheduler {
     }
 
     private void run() {
-        id = Bukkit.getScheduler().scheduleSyncDelayedTask(ChatColor.getPlugin(), () -> {
+        long delayTicks = mainConfig.getInt(Setting.CONFIRM_TIMEOUT.getConfigPath()) * 20L;
+        task = SchedulerAdapter.runForEntity(ChatColor.getPlugin(), player, () -> {
             player.sendMessage(M.PREFIX + M.DID_NOT_CONFIRM);
             confirmationsManager.removeConfirmingPlayer(player);
-        }, mainConfig.getInt(Setting.CONFIRM_TIMEOUT.getConfigPath()) * 20L);
+        }, delayTicks);
     }
 
     public void cancelScheduler() {
-        Bukkit.getScheduler().cancelTask(id);
+        task.cancel();
         confirmationsManager.removeConfirmingPlayer(player);
     }
 

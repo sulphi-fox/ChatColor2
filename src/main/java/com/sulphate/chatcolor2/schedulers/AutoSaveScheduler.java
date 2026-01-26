@@ -4,7 +4,6 @@ import com.sulphate.chatcolor2.main.ChatColor;
 import com.sulphate.chatcolor2.utils.GeneralUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +13,7 @@ public class AutoSaveScheduler {
 
     private final ChatColor plugin;
 
-    private BukkitTask task;
+    private SchedulerAdapter.TaskWrapper task;
     private final ConcurrentHashMap<String, YamlConfiguration> configsToSave;
     private int saveInterval;
 
@@ -27,7 +26,8 @@ public class AutoSaveScheduler {
     }
 
     private void run() {
-        task = Bukkit.getScheduler().runTaskTimer(plugin, this::saveAllConfigs, (long) saveInterval * 20 * 60, (long) saveInterval * 20 * 60);
+        long intervalTicks = (long) saveInterval * 20 * 60;
+        task = SchedulerAdapter.runTimer(plugin, this::saveAllConfigs, intervalTicks, intervalTicks);
     }
 
     public void setSaveInterval(int saveInterval) {
