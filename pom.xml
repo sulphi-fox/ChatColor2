@@ -33,6 +33,11 @@
       <id>minecraft-repo</id>
       <url>https://libraries.minecraft.net/</url>
     </repository>
+
+    <repository>
+      <id>papermc</id>
+      <url>https://repo.papermc.io/repository/maven-public/</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -74,6 +79,14 @@
       <artifactId>HikariCP</artifactId>
       <version>4.0.3</version>
       <scope>compile</scope>
+    </dependency>
+
+    <!-- Folia API (for direct scheduler API calls without reflection) -->
+    <dependency>
+      <groupId>dev.folia</groupId>
+      <artifactId>folia-api</artifactId>
+      <version>1.20.4-R0.1-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
 
     <!-- Mojang Authlib (required for skulls) -->
