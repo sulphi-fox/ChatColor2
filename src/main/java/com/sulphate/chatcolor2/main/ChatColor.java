@@ -132,11 +132,22 @@ public class ChatColor extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        guiManager.closeOpenGuis();
-        playerDataStore.shutdown();
+        if (guiManager != null) {
+            guiManager.closeOpenGuis();
+        }
+
+        if (playerDataStore != null) {
+            playerDataStore.shutdown();
+        }
+
         plugin = null;
 
-        console.sendMessage(M.PREFIX + M.SHUTDOWN.replace("[version]", getDescription().getVersion()));
+        if (M != null) {
+            console.sendMessage(M.PREFIX + M.SHUTDOWN.replace("[version]", getDescription().getVersion()));
+        }
+        else {
+            console.sendMessage(GeneralUtils.colourise("&b[ChatColor] &eChatColor 2 Version &b" + getDescription().getVersion() + " &ehas been &cdisabled&e."));
+        }
     }
 
     private void setupObjects() {

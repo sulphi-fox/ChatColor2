@@ -5,9 +5,13 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // Utils for managing cross-api-version compatability.
 public class CompatabilityUtils {
+
+    private static final Pattern VERSION_PATTERN = Pattern.compile("(\\d+(?:\\.\\d+)+)");
 
     private static boolean isMaterialLegacy;
     private static boolean isHexLegacy;
@@ -19,14 +23,7 @@ public class CompatabilityUtils {
     }
 
     public static void init() {
-        // Parse minor version to check for hex compatability.
-        String version = Bukkit.getBukkitVersion();
-        version = version.substring(0, version.indexOf('-'));
-
-        int dotIndex = version.indexOf('.');
-        float minorVersion = Float.parseFloat(version.substring(dotIndex + 1));
-
-        isHexLegacy = minorVersion < 16;
+        isHexLegacy = isHexLegacyVersion(Bukkit.getBukkitVersion());
         isMaterialLegacy = Material.getMaterial("INK_SAC") == null;
 
         blockColourToDataMap = new HashMap<>();
@@ -41,6 +38,41 @@ public class CompatabilityUtils {
         for (int i = 0; i < dyeColourNames.length; i++) {
             dyeColourToDataMap.put(dyeColourNames[i], (short) i);
         }
+    }
+
+    private static boolean isHexLegacyVersion(String version) {
+        int[] versionParts = parseVersionParts(version);
+
+        if (versionParts.length < 2) {
+            return false;
+        }
+
+        return versionParts[0] == 1 && versionParts[1] < 16;
+    }
+
+    private static int[] parseVersionParts(String version) {
+        if (version == null) {
+            return new int[0];
+        }
+
+        Matcher matcher = VERSION_PATTERN.matcher(version);
+        if (!matcher.find()) {
+            return new int[0];
+        }
+
+        String[] rawParts = matcher.group(1).split("\\.");
+        int[] versionParts = new int[rawParts.length];
+
+        for (int i = 0; i < rawParts.length; i++) {
+            try {
+                versionParts[i] = Integer.parseInt(rawParts[i]);
+            }
+            catch (NumberFormatException ex) {
+                return new int[0];
+            }
+        }
+
+        return versionParts;
     }
 
     public static ItemStack getColouredItem(String materialName) {
