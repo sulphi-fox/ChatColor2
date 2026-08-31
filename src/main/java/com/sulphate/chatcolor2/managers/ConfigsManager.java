@@ -1,7 +1,5 @@
 package com.sulphate.chatcolor2.managers;
 
-import com.sulphate.chatcolor2.main.ChatColor;
-import com.sulphate.chatcolor2.utils.CompatabilityUtils;
 import com.sulphate.chatcolor2.utils.Config;
 import com.sulphate.chatcolor2.utils.ConfigUtils;
 import com.sulphate.chatcolor2.utils.Reloadable;
@@ -31,14 +29,6 @@ public class ConfigsManager implements Reloadable {
 
         for (Config config : Config.values()) {
             String fileName = config.getFilename();
-
-            if (config.equals(Config.GUI)) {
-                if (CompatabilityUtils.isHexLegacy() && !configUtils.configExists(fileName)) {
-                    configs.put(fileName, configUtils.getConfigOrCopyDefault(fileName, "legacy-gui.yml"));
-                    continue;
-                }
-            }
-
             configs.put(fileName, configUtils.getConfigOrCopyDefault(fileName));
         }
     }

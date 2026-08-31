@@ -91,11 +91,6 @@ public class ChatColor extends JavaPlugin {
             console.sendMessage(M.PREFIX + GeneralUtils.colourise(message));
         }
 
-        // Show legacy notice if necessary.
-        if (CompatabilityUtils.isHexLegacy()) {
-            console.sendMessage(M.PREFIX + M.LEGACY_DETECTED);
-        }
-
         // Check for player head compatibility
         ItemStackTemplate head = new ItemStackTemplate(Material.PLAYER_HEAD, null, null, EXAMPLE_HEAD_DATA);
         head.build(1);
@@ -151,9 +146,6 @@ public class ChatColor extends JavaPlugin {
     }
 
     private void setupObjects() {
-        // Init compatability utils.
-        CompatabilityUtils.init();
-
         configUtils = new ConfigUtils(this, GeneralUtils::sendConsoleMessage);
         configsManager = new ConfigsManager(configUtils);
         config = configsManager.getConfig(Config.MAIN_CONFIG);

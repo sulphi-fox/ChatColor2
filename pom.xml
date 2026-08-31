@@ -4,12 +4,12 @@
 
   <groupId>me.sulphate</groupId>
   <artifactId>ChatColor2</artifactId>
-  <version>1.16.2</version>
+  <version>1.17</version>
   <name>ChatColor2</name>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>25</maven.compiler.source>
+    <maven.compiler.target>25</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -40,7 +40,7 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>1.20.3-R0.1-SNAPSHOT</version>
+      <version>26.2-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
 
@@ -74,14 +74,6 @@
       <artifactId>HikariCP</artifactId>
       <version>4.0.3</version>
       <scope>compile</scope>
-    </dependency>
-
-    <!-- Mojang Authlib (required for skulls) -->
-    <dependency>
-      <groupId>com.mojang</groupId>
-      <artifactId>authlib</artifactId>
-      <version>1.5.21</version>
-      <scope>provided</scope>
     </dependency>
 
   </dependencies>

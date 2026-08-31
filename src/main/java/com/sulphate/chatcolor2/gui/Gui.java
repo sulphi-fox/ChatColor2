@@ -6,7 +6,6 @@ import com.sulphate.chatcolor2.exception.InvalidMaterialException;
 import com.sulphate.chatcolor2.gui.item.impl.*;
 import com.sulphate.chatcolor2.managers.CustomColoursManager;
 import com.sulphate.chatcolor2.gui.item.*;
-import com.sulphate.chatcolor2.utils.CompatabilityUtils;
 import com.sulphate.chatcolor2.utils.GeneralUtils;
 import com.sulphate.chatcolor2.utils.Messages;
 import org.bukkit.Bukkit;
@@ -258,14 +257,6 @@ public class Gui {
                     if (colour == null) {
                         GeneralUtils.sendConsoleMessage(M.PREFIX + String.format(Messages.INVALID_CUSTOM_COLOUR, name, data));
                         return new ParseResult(null, -1, false);
-                    }
-                }
-
-                if (CompatabilityUtils.isHexLegacy()) {
-                    String colour = GeneralUtils.isCustomColour(data) ? customColoursManager.getCustomColour(data) : data;
-
-                    if (GeneralUtils.containsHexColour(colour, false)) {
-                        return new ParseResult(null, -1, true);
                     }
                 }
 

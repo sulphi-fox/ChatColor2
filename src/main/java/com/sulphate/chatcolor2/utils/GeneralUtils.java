@@ -244,11 +244,6 @@ public class GeneralUtils implements Reloadable {
     }
 
     private static String createHexColour(String hexString) {
-        // Safe fallback to white colour if hex is not supported.
-        if (CompatabilityUtils.isHexLegacy()) {
-            return colourise("&f");
-        }
-
         hexString = hexString.replace("&", "");
         return net.md_5.bungee.api.ChatColor.of(hexString).toString();
     }
