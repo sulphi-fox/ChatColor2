@@ -31,7 +31,8 @@ public class ChatColorCommand implements CommandExecutor, Reloadable {
             "force-group-colors",
             "default-color-enabled",
             "command-opens-gui",
-            "ignore-symbol-prefixes"
+            "ignore-symbol-prefixes",
+            "remove-inaccessible-colors"
     );
 
     private final Messages M;
@@ -76,9 +77,7 @@ public class ChatColorCommand implements CommandExecutor, Reloadable {
         boolean notifyOthers = mainConfig.getBoolean(Setting.NOTIFY_OTHERS.getConfigPath());
         boolean forceGroupColours = mainConfig.getBoolean(Setting.FORCE_GROUP_COLORS.getConfigPath());
 
-        if (sender instanceof Player) {
-
-            Player s = (Player) sender;
+        if (sender instanceof Player s) {
             // Run the command check.
             // This checks: permissions, valid colours, errors, confirming restrictions, and anything else I missed.
             if (!checkCommand(args, s)) {
@@ -905,10 +904,10 @@ public class ChatColorCommand implements CommandExecutor, Reloadable {
 
         switch (setting.getDataType()) {
             case BOOLEAN: {
-                Boolean val;
+                boolean val;
 
                 try {
-                    val = (Boolean) Boolean.parseBoolean(rawValue);
+                    val = Boolean.parseBoolean(rawValue);
                 }
                 catch (Exception e) {
                     player.sendMessage(M.PREFIX + M.NEEDS_BOOLEAN);
@@ -929,10 +928,10 @@ public class ChatColorCommand implements CommandExecutor, Reloadable {
             }
 
             case INTEGER: {
-                Integer val;
+                int val;
 
                 try {
-                    val = (Integer) Integer.parseInt(rawValue);
+                    val = Integer.parseInt(rawValue);
                 }
                 catch (Exception ex) {
                     player.sendMessage(M.PREFIX + M.NEEDS_NUMBER);

@@ -73,8 +73,13 @@ public class ChatListener implements Listener, Reloadable {
         // not enabled, do nothing at all.
         if (dataStore.getColour(uuid) == null) {
             if (defaultColourEnabled) {
-                String defaultColor = mainConfig.getString("default.color");
-                colourAndModify(player, message, defaultColor, event);
+                String defaultColour = mainConfig.getString("default.color");
+
+                if (defaultColour == null) {
+                    defaultColour = "";
+                }
+
+                colourAndModify(player, message, defaultColour, event);
             }
 
             return;
