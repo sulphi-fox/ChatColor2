@@ -389,13 +389,15 @@ public class Gui {
             if (doPreSelectChecks(selectable, slot, inventory)) {
                 if (selectable.select()) {
                     String colour = playerData.getColour();
+                    boolean isColourName = false;
 
                     if (selectable instanceof ColourItem) {
                         colour = ((ColourItem) selectable).buildItem().getItemMeta().getDisplayName();
+                        isColourName = true;
                     }
 
                     playSound(selectSound);
-                    owner.sendMessage(M.PREFIX + generalUtils.colourSetMessage(M.SET_OWN_COLOR, colour, true));
+                    owner.sendMessage(M.PREFIX + generalUtils.colourSetMessage(M.SET_OWN_COLOR, colour, isColourName));
                 }
                 else {
                     playSound(errorSound);
