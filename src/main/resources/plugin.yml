@@ -108,6 +108,9 @@ permissions:
 
   chatcolor.admin:
     description: Allows the player to use ChatColor admin commands.
+    default: op
+    children:
+      chatcolor.admin.ignore-group-colors: true
 
   chatcolor.clear:
     description: Allows the player to clear their chat colour.

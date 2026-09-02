@@ -108,7 +108,9 @@ public class ChatListener implements Listener, Reloadable {
 
         if (groupColour != null) {
             // If it should be forced, set it so.
-            if (mainConfig.getBoolean(Setting.FORCE_GROUP_COLORS.getConfigPath())) {
+            if (mainConfig.getBoolean(Setting.FORCE_GROUP_COLORS.getConfigPath())
+                    && !player.hasPermission("chatcolor.admin.ignore-group-colors")
+            ) {
                 colour = groupColour;
             }
         }

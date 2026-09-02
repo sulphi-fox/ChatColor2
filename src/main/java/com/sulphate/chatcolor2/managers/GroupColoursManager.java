@@ -63,15 +63,7 @@ public class GroupColoursManager implements Reloadable {
         return orderedGroupNames;
     }
 
-    public String getGroupColour(String name) {
-        return groupColours.get(name);
-    }
-
     public String getGroupColourForPlayer(Player player, boolean returnName) {
-        if (player.hasPermission("*") || player.hasPermission("chatcolor.*") || player.isOp()) {
-            return null;
-        }
-
         for (String groupName : orderedGroupNames) {
             if (player.hasPermission("chatcolor.group." + groupName)) {
                 return returnName ? groupName : groupColours.get(groupName);
