@@ -14,10 +14,11 @@
 #
 #   items:
 #     <slot number>:
-#       type: [COLOUR / MODIFIER / INVENTORY / FILLER]
+#       type: [COLOUR / MODIFIER / INVENTORY / FILLER / COMMAND / CLOSE_GUI ]
 #       data: [color name / modifier char / inventory name]
+#       command-source: [ PLAYER / CONSOLE ] <-- This is *only* for COMMAND items, and sets who should run the command.
 #       name: [item name (colors supported)]
-#       material: [item material (colors & inventories only)]
+#       material: [item material (colors, inventories, commands, close GUI items only)]
 #       lore: [lore to display on the item, always]
 #       no-permission-lore: [lore to display when the player doesn't have permission]
 #
