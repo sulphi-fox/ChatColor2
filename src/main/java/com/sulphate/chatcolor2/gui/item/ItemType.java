@@ -5,7 +5,8 @@ public enum ItemType {
     MODIFIER,
     INVENTORY,
     FILLER,
-    COMMAND;
+    COMMAND,
+    CLOSE_GUI;
 
     public static ItemType getTypeFromName(String name) {
         if (name.equals("COLOR")) {

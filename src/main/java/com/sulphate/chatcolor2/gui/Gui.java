@@ -221,6 +221,11 @@ public class Gui {
         if (type.equals(ItemType.FILLER)) {
             item = new SimpleGuiItem(fillerItemTemplate);
         }
+        else if (type.equals(ItemType.CLOSE_GUI)) {
+            item = new CloseGUIItem(
+                    ItemStackTemplate.fromConfigSection(itemSection)
+            );
+        }
         else {
             if (!itemSection.contains("data")) {
                 throw new InvalidGuiException(String.format(Messages.INVALID_ITEM, itemKey, name, "missing 'data' config value"));

@@ -165,10 +165,18 @@ main:
       material: PLAYER_HEAD
       head-data: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODFjOTZhNWMzZDEzYzMxOTkxODNlMWJjN2YwODZmNTRjYTJhNjUyNzEyNjMwM2FjOGUyNWQ2M2UxNmI2NGNjZiJ9fX0='
 
-    40:
+    39:
       type: COLOUR
       data: default
       material: WHITE_DYE
+
+    41:
+      type: CLOSE_GUI
+      name: "&bClose GUI"
+      lore:
+        - ''
+        - '&eClick to close the GUI.'
+      material: BARRIER
 
     44:
       type: INVENTORY
