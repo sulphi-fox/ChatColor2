@@ -281,9 +281,24 @@ public class Gui {
                 }
 
                 ItemStackTemplate template = ItemStackTemplate.fromConfigSection(itemSection);
+                CommandItem.CommandSource source;
 
-                data = data.replace("%player%", owner.getDisplayName());
-                item = new CommandItem(data, template);
+                if (itemSection.contains("command-source")) {
+                    String rawSource = itemSection.getString("command-source");
+
+                    try {
+                        source = CommandItem.CommandSource.valueOf(rawSource);
+                    }
+                    catch (IllegalArgumentException _) {
+                        source = CommandItem.CommandSource.CONSOLE;
+                    }
+                }
+                else {
+                    source = CommandItem.CommandSource.CONSOLE;
+                }
+
+                data = data.replace("%player%", owner.getName());
+                item = new CommandItem(data, template, source);
             }
             else {
                 String name = itemSection.contains("name") ?
@@ -355,8 +370,8 @@ public class Gui {
     }
 
     // Performs an interaction within the GUI, updating the passed inventory with any effects of the interaction.
-    public void onInteract(int slot, Inventory inventory) {
-        // This means they clicked outside of the actual GUI.
+    public void onInteract(int slot, Inventory inventory, Player who) {
+        // This means they clicked outside the actual GUI.
         if (slot >= size) {
             return;
         }
@@ -384,7 +399,7 @@ public class Gui {
             }
         }
         else if (clicked instanceof ClickableItem) {
-            ((ClickableItem) clicked).click();
+            ((ClickableItem) clicked).click(who);
         }
 
         inventory.setItem(slot, clicked.buildItem());

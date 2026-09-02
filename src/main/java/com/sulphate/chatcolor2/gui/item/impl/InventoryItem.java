@@ -26,7 +26,7 @@ public class InventoryItem extends ComplexGuiItem implements ClickableItem {
     }
 
     @Override
-    public void click() {
+    public void click(Player who) {
         // It is necessary to create the GUI here as otherwise it will result in a stack overflow if two inventories
         // refer to each other (as opposed to when the item is created).
         Gui targetGui = guiManager.createGui(data, player);

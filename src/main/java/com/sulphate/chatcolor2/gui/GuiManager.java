@@ -247,7 +247,7 @@ public class GuiManager implements Reloadable, Listener {
 
             if (action.equals(InventoryAction.PICKUP_ALL) && clicked != null && !clicked.getType().equals(Material.AIR)) {
                 // Perform the interaction, persist any changes to their colour.
-                openGuis.get(player).onInteract(event.getRawSlot(), inventory);
+                openGuis.get(player).onInteract(event.getRawSlot(), inventory, (Player) event.getWhoClicked());
                 dataStore.savePlayerData(player.getUniqueId());
             }
         }

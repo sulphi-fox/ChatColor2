@@ -6,16 +6,23 @@ import com.sulphate.chatcolor2.gui.item.ItemStackTemplate;
 import com.sulphate.chatcolor2.utils.InventoryUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
 public class CommandItem extends ComplexGuiItem implements ClickableItem {
 
-    public static String clickToRunMessage;
+    public enum CommandSource {
+        PLAYER, CONSOLE
+    }
 
-    public CommandItem(String data, ItemStackTemplate itemTemplate) {
+    public static String clickToRunMessage;
+    private final CommandSource source;
+
+    public CommandItem(String data, ItemStackTemplate itemTemplate, CommandSource source) {
         super(data, itemTemplate);
+        this.source = source;
     }
 
     @Override
@@ -36,9 +43,11 @@ public class CommandItem extends ComplexGuiItem implements ClickableItem {
     }
 
     @Override
-    public void click() {
-        ConsoleCommandSender console = Bukkit.getConsoleSender();
-        Bukkit.dispatchCommand(console, data);
+    public void click(Player who) {
+        switch (source) {
+            case CONSOLE -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), data);
+            case PLAYER -> Bukkit.dispatchCommand(who, data);
+        }
     }
 
 }
