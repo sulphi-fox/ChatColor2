@@ -197,6 +197,17 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
                         return M.GUI_UNAVAILABLE;
                     }
                 }
+                // Custom colour permission checker.
+                else if (identifier.matches("^.+_available$")) {
+                    String customColourToCheck = identifier.split("_")[0];
+
+                    if (player.hasPermission("chatcolor.custom." + customColourToCheck)) {
+                        return M.GUI_AVAILABLE;
+                    }
+                    else {
+                        return M.GUI_UNAVAILABLE;
+                    }
+                }
             }
         }
 
