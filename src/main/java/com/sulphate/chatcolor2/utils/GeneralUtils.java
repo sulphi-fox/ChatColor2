@@ -561,7 +561,14 @@ public class GeneralUtils implements Reloadable {
         }
 
         if (colour.startsWith("%")) {
-            return colour;
+            boolean shouldHidePrefix = mainConfig.getBoolean(Setting.HIDE_CUSTOM_COLOR_PREFIX.getConfigPath());
+
+            if (shouldHidePrefix) {
+                return colour.substring(1);
+            }
+            else {
+                return colour;
+            }
         }
         else if (colour.startsWith("&u")) {
             return "rainbow";

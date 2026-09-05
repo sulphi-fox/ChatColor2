@@ -19,21 +19,9 @@ import java.util.*;
 
 public class ChatColorCommand implements CommandExecutor, Reloadable {
 
-    private static final List<String> SETTING_NAMES = Arrays.asList(
-            "auto-save",
-            "save-interval",
-            "color-override",
-            "notify-others",
-            "join-message",
-            "confirm-timeout",
-            "default-color",
-            "command-name",
-            "force-group-colors",
-            "default-color-enabled",
-            "command-opens-gui",
-            "ignore-symbol-prefixes",
-            "remove-inaccessible-colors"
-    );
+    private static final List<String> SETTING_NAMES = Arrays.stream(Setting.values())
+            .map(it -> it.getName().toLowerCase().replace('_', '-'))
+            .toList();
 
     private final Messages M;
     private final GeneralUtils generalUtils;

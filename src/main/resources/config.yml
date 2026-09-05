@@ -26,6 +26,7 @@ settings:
   command-opens-gui: false
   ignore-symbol-prefixes: true
   remove-inaccessible-colors: false
+  hide-custom-color-prefix: false
 placeholders:
   - '[item]'
 default:
